@@ -1,6 +1,7 @@
 export interface BulletinPromptOptions {
   bulletinDateDisplay: string;
   bulletinDateIso: string;
+  todayDateIso: string;
   videoUrls: string[];
   icsContent: string;
   xmlContent: string;
@@ -11,6 +12,7 @@ export function buildBulletinPrompt(opts: BulletinPromptOptions): string {
   const {
     bulletinDateDisplay,
     bulletinDateIso,
+    todayDateIso,
     videoUrls,
     icsContent,
     xmlContent,
@@ -60,9 +62,9 @@ Registration links from XML when available
 
 Categorize events by date:
 
-"This Week at St. John": Events within 7 days of ${bulletinDateDisplay}
+"This Week at St. John": Events within 7 days of ${todayDateIso}
 
-"Coming Soon": Events 8+ days from ${bulletinDateDisplay}
+"Coming Soon": Events 8+ days from ${todayDateIso}
 
 Readings API:
 
@@ -116,7 +118,7 @@ Bulletin Details:
 
 Date: ${bulletinDateDisplay}
 
-Today's date: ${bulletinDateIso} (for calculating event categories)
+Today's date: ${todayDateIso} (for calculating event categories)
 
 Church Address (for verification only, NOT for inclusion in bulletin): 275 Olympia Way, San Francisco, CA 94131
 

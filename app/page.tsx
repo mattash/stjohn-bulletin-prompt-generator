@@ -6,6 +6,7 @@ import styles from './page.module.css';
 export default function Home() {
   const [bulletinDateDisplay, setBulletinDateDisplay] = useState('');
   const [bulletinDateIso, setBulletinDateIso] = useState('');
+  const [todayDateIso, setTodayDateIso] = useState('');
   const [videoUrls, setVideoUrls] = useState<string[]>(['']);
   const [loading, setLoading] = useState(false);
   const [generatedPrompt, setGeneratedPrompt] = useState('');
@@ -28,6 +29,7 @@ export default function Home() {
         body: JSON.stringify({
           bulletinDateDisplay,
           bulletinDateIso,
+          todayDateIso,
           videoUrls: filteredVideoUrls,
         }),
       });
@@ -93,7 +95,7 @@ export default function Home() {
 
           <div className={styles.formGroup}>
             <label htmlFor="bulletinDateIso">
-              Bulletin date ISO (YYYY-MM-DD)
+              Bulletin date (YYYY-MM-DD)
             </label>
             <input
               type="date"
@@ -102,6 +104,25 @@ export default function Home() {
               onChange={(e) => setBulletinDateIso(e.target.value)}
               required
             />
+            <span className={styles.helpText}>
+              Used for readings API and bulletin display
+            </span>
+          </div>
+
+          <div className={styles.formGroup}>
+            <label htmlFor="todayDateIso">
+              Today's date (YYYY-MM-DD)
+            </label>
+            <input
+              type="date"
+              id="todayDateIso"
+              value={todayDateIso}
+              onChange={(e) => setTodayDateIso(e.target.value)}
+              required
+            />
+            <span className={styles.helpText}>
+              Used to calculate "This Week" (within 7 days) vs "Coming Soon" (8+ days)
+            </span>
           </div>
 
           <div className={styles.videoSection}>

@@ -8,10 +8,10 @@ const READINGS_API_URL = 'https://api.fastandpray.app/api/readings/';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { bulletinDateDisplay, bulletinDateIso, videoUrls = [] } = body;
+    const { bulletinDateDisplay, bulletinDateIso, todayDateIso, videoUrls = [] } = body;
 
     // Validate required fields
-    if (!bulletinDateDisplay || !bulletinDateIso) {
+    if (!bulletinDateDisplay || !bulletinDateIso || !todayDateIso) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -63,6 +63,7 @@ export async function POST(request: Request) {
     const prompt = buildBulletinPrompt({
       bulletinDateDisplay,
       bulletinDateIso,
+      todayDateIso,
       videoUrls,
       icsContent,
       xmlContent,
