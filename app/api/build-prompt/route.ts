@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { buildBulletinPrompt } from '@/lib/bulletinPromptTemplate';
 
 const ICS_URL = 'https://stjohnarmenianchurch.com/calendar.ics';
-const XML_URL = 'https://stjohnarmenianchurch.com/calendar.xml';
+const XML_URL = 'https://stjohnarmenianchurch.com/calendar_extended.xml';
 const READINGS_API_URL = 'https://api.fastandpray.app/api/readings/';
 
 export async function POST(request: Request) {
